@@ -11,3 +11,5 @@ config.json
 # Builds/PDFs desnecessários  
 /build/  
 /*.pdf   # (Remova esta linha se quiser versionar o PDF do paper)
+.aider*
+*id*
