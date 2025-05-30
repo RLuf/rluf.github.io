@@ -16,4 +16,5 @@ config.json
 /build/  
 /*.pdf   # (Remova esta linha se quiser versionar o PDF do paper)
 .aider*
-*id*.vscode/
+*id*
+.vscode/
