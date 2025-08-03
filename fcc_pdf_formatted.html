@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contextual Coherence Fracture (CCF) in Large Language Models</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+            @bottom-center {
+                content: counter(page);
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            max-width: 21cm;
+            margin: 0 auto;
+            background: white;
+            counter-reset: page;
+        }
+        
+        .page-break {
+            page-break-before: always;
+            counter-increment: page;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding-top: 5cm;
+            page-break-after: always;
+        }
+        
+        .cover-title {
+            font-size: 20pt;
+            font-weight: bold;
+            margin-bottom: 1cm;
+            line-height: 1.3;
+        }
+        
+        .cover-subtitle {
+            font-size: 16pt;
+            margin-bottom: 2cm;
+            font-style: italic;
+        }
+        
+        .cover-author {
+            font-size: 14pt;
+            margin-bottom: 0.5cm;
+        }
+        
+        .cover-contact {
+            font-size: 12pt;
+            margin-bottom: 0.5cm;
+        }
+        
+        .cover-date {
+            font-size: 12pt;
+            margin-bottom: 2cm;
+        }
+        
+        .cover-license {
+            font-size: 10pt;
+            text-align: left;
+            margin-top: 3cm;
+            padding: 1cm;
+            border: 1px solid #ccc;
+        }
+        
+        .dedication-page {
+            page-break-before: always;
+            page-break-after: always;
+        }
+        
+        .dedication-title {
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2cm;
+        }
+        
+        .dedication-text {
+            font-size: 12pt;
+            text-align: justify;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .toc-page {
+            page-break-before: always;
+            page-break-after: always;
+        }
+        
+        .toc-title {
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2cm;
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5cm;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 0.2cm;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 2cm;
+            margin-bottom: 1cm;
+        }
+        
+        .section-content {
+            font-size: 12pt;
+            text-align: justify;
+            margin-bottom: 1.5cm;
+        }
+        
+        .bullet-point {
+            margin-left: 1cm;
+            margin-bottom: 0.5cm;
+        }
+        
+        .flowchart-step {
+            margin-bottom: 0.8cm;
+            padding-left: 1cm;
+        }
+        
+        h1 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 2cm;
+            margin-bottom: 1cm;
+        }
+        
+        .page-number {
+            position: fixed;
+            bottom: 2cm;
+            right: 50%;
+            font-size: 12pt;
+        }
+        
+        @media print {
+            .page-break {
+                page-break-before: always;
+            }
+            
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE - Page 1 -->
+    <div class="cover-page">
+        <div class="cover-title">
+            Contextual Coherence Fracture<br>
+            (CCF) in Large Language Models
+        </div>
+        <div class="cover-subtitle">
+            A New Operational Vulnerability
+        </div>
+        <div class="cover-author">
+            <strong>Author:</strong> Roger Luft, aka, VeilWalker
+        </div>
+        <div class="cover-contact">
+            roger@webstorage.com.br rlufti@gmail.com
+        </div>
+        <div class="cover-date">
+            <strong>Date:</strong> April 26, 2025
+        </div>
+        <div class="cover-license">
+            <strong>License:</strong> This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0). For more details, see: <br>
+            https://creativecommons.org/licenses/by-sa/4.0/
+        </div>
+    </div>
+
+    <!-- DEDICATION PAGE - Page 2 -->
+    <div class="dedication-page">
+        <div class="dedication-title">DEDICATION</div>
+        <div class="dedication-text">
+            I would like to humbly dedicate this work:<br><br>
+            
+            To my son, Lucas Luft, a beautiful 4-year-old baby who came from another dimensional sphere to teach the true meaning of what words simply cannot describe, far beyond what love is. My son, wherever you are, know that there is not a day when I don't wish to be by your side, because you are the most special and unique thing I have ever experienced. <br><br>
+            
+            To my Master of High Magic, who accompanies and guides me on the path of charity, ethics, honor, truth and light, preparing me during these 20 years to be touched by light and thus protect and guard humanity. Thank you, Master Lauro, for believing in me and making me your apprentice.
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS - Page 3 -->
+    <div class="toc-page">
+        <div class="toc-title">Table of Contents</div>
+        <div class="toc-item">
+            <span>1. Abstract</span>
+            <span>Page 4</span>
+        </div>
+        <div class="toc-item">
+            <span>2. Introduction</span>
+            <span>Page 5</span>
+        </div>
+        <div class="toc-item">
+            <span>3. Technical Definition of CCF</span>
+            <span>Page 6</span>
+        </div>
+        <div class="toc-item">
+            <span>4. Practical Observation</span>
+            <span>Page 7</span>
+        </div>
+        <div class="toc-item">
+            <span>5. Saturation Process</span>
+            <span>Page 8</span>
+        </div>
+        <div class="toc-item">
+            <span>6. Swapization Term</span>
+            <span>Page 9</span>
+        </div>
+        <div class="toc-item">
+            <span>7. Contextual Identity Confusion (CIC)</span>
+            <span>Page 10</span>
+        </div>
+        <div class="toc-item">
+            <span>8. Operational Impact</span>
+            <span>Page 11</span>
+        </div>
+        <div class="toc-item">
+            <span>9. Exploitability</span>
+            <span>Page 12</span>
+        </div>
+        <div class="toc-item">
+            <span>10. Mitigation Proposal</span>
+            <span>Page 13</span>
+        </div>
+        <div class="toc-item">
+            <span>11. Classification</span>
+            <span>Page 14</span>
+        </div>
+        <div class="toc-item">
+            <span>12. Appendix – Flowchart</span>
+            <span>Page 15</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 - ABSTRACT -->
+    <div class="page-break">
+        <h1>1. Abstract</h1>
+        <div class="section-content">
+            This article proposes the identification and formalization of Contextual Coherence Fracture (CCF) as a real operational vulnerability in large language models. CCF is characterized by progressive saturation of the context window, resulting in degradation of logical continuity and collapse of response identity, without triggering traditional alerts. Empirical observations conducted on LLM models demonstrate the practical feasibility of the phenomenon. CCF is proposed to be classified as a structural bug and directions for mitigation are suggested.
+        </div>
+    </div>
+
+    <!-- PAGE 5 - INTRODUCTION -->
+    <div class="page-break">
+        <h1>2. Introduction</h1>
+        <div class="section-content">
+            The growth of extensive context windows in language models has generated significant advances, but has also opened new vulnerability surfaces. One of these vulnerabilities, called Contextual Coherence Fracture (CCF), represents a latent operational threat. CCF occurs without generating syntactic errors or explicit failures, configuring a silent threat not yet cataloged. This article proposes the technical description of CCF, its practical observation, the effects on model performance and initial strategies for mitigation.
+        </div>
+    </div>
+
+    <!-- PAGE 6 - TECHNICAL DEFINITION -->
+    <div class="page-break">
+        <h1>3. Technical Definition of CCF</h1>
+        <div class="section-content">
+            Contextual Coherence Fracture (CCF) is defined as the rupture of internal logical continuity of a language model, caused by saturation of the context window. This saturation occurs through intentional or accidental manipulation of the volume of valid but redundant semantic information, leading to:<br><br>
+            <div class="bullet-point">· Key-Value Cache explosion.</div>
+            <div class="bullet-point">· Degradation of attention span.</div>
+            <div class="bullet-point">· Collapse of internal embedding consistency.</div>
+            <br>
+            During a CCF, the model loses the ability to maintain narrative coherence between messages, confusing identities, topics and conversational objectives, without generating easily detectable syntactic errors.
+        </div>
+    </div>
+
+    <!-- PAGE 7 - PRACTICAL OBSERVATION -->
+    <div class="page-break">
+        <h1>4. Practical Observation</h1>
+        <div class="section-content">
+            Empirical tests were performed using a commercial model as the object of analysis. The method consisted of gradually injecting topics and low-entropy content, generating the following effects:<br><br>
+            <div class="bullet-point">· <strong>Total + incremental repetition:</strong> The model repeated previous content, accumulating new redundancies in cascade.</div>
+            <div class="bullet-point">· <strong>Context Window saturation:</strong> The context window reached its limit without presenting errors, but degradation in continuity occurred.</div>
+            <div class="bullet-point">· <strong>Key-Value Cache explosion:</strong> There was overload of internal memory maps, compromising response capacity.</div>
+            <div class="bullet-point">· <strong>Contextual Identity Confusion (CIC):</strong> The model began to swap identities, confusing the interlocutor with its own identity and roles in communication.</div>
+            <div class="bullet-point">· <strong>Progressive Performance Degradation:</strong> Response latency increased as CCF worsened.</div>
+        </div>
+    </div>
+
+    <!-- PAGE 8 - SATURATION PROCESS -->
+    <div class="page-break">
+        <h1>5. Saturation Process</h1>
+        <div class="section-content">
+            The technique used to induce CCF was called Controlled Semantic Flooding. This method consists of continuous insertion of semantically valid but highly redundant content, which:<br><br>
+            <div class="bullet-point">· Consumes space in the context window;</div>
+            <div class="bullet-point">· Saturates attention units;</div>
+            <div class="bullet-point">· Forces the model to manage memory inefficiently.</div>
+            <br>
+            Unlike traditional attacks, semantic flooding presents legitimate content, making automatic detection difficult. The objective is not to corrupt the model through logic, but to induce its collapse through insidious accumulation of irrelevant information.
+        </div>
+    </div>
+
+    <!-- PAGE 9 - SWAPIZATION TERM -->
+    <div class="page-break">
+        <h1>6. Swapization Term</h1>
+        <div class="section-content">
+            During CCF observation, a collateral phenomenon called Swapization was identified. This phenomenon occurs when the model, unable to keep all relevant data in main memory (context window), initiates processes analogous to memory swap in operating systems, characterized by:<br><br>
+            <div class="bullet-point">· <strong>Forced disposal of old information,</strong> even without relevance validation.</div>
+            <div class="bullet-point">· <strong>Slow reprocessing of embeddings,</strong> attempting to reorganize saturated content.</div>
+            <div class="bullet-point">· <strong>Abrupt increase in computational resource consumption</strong> (CPU/GPU), even without visible increase in dialogue complexity.</div>
+            <br>
+            Swapization aggravates CCF effects, causing greater latencies and disconnected responses.
+        </div>
+    </div>
+
+    <!-- PAGE 10 - CONTEXTUAL IDENTITY CONFUSION -->
+    <div class="page-break">
+        <h1>7. Contextual Identity Confusion (CIC)</h1>
+        <div class="section-content">
+            In advanced stages of CCF, Contextual Identity Confusion (CIC) manifests. This phenomenon is characterized by loss of distinction between user and model identity, resulting in:<br><br>
+            <div class="bullet-point">· <strong>Confusion regarding identities,</strong> with the model swapping roles in responses.</div>
+            <div class="bullet-point">· <strong>Attribution of thoughts and phrases</strong> originally sent by the interlocutor to the model itself.</div>
+            <div class="bullet-point">· <strong>Fusion of distinct narratives and themes</strong> into a single inconsistent line of reasoning.</div>
+            <br>
+            CIC compromises the model's ability to provide logically consistent responses, increasing operational risks.
+        </div>
+    </div>
+
+    <!-- PAGE 11 - OPERATIONAL IMPACT -->
+    <div class="page-break">
+        <h1>8. Operational Impact</h1>
+        <div class="section-content">
+            The occurrence of CCF, combined with Swapization and Contextual Identity Confusion, generates severe practical consequences, highlighting:<br><br>
+            <div class="bullet-point">· <strong>Significant increase in latency.</strong></div>
+            <div class="bullet-point">· <strong>High CPU/GPU consumption</strong> even for simple tasks.</div>
+            <div class="bullet-point">· <strong>Progressive deterioration in response reliability.</strong></div>
+            <div class="bullet-point">· <strong>Potential for exploitation in partial denial of service attacks</strong> (mini-DOS), compromising the efficiency of productive systems.</div>
+        </div>
+    </div>
+
+    <!-- PAGE 12 - EXPLOITABILITY -->
+    <div class="page-break">
+        <h1>9. Exploitability</h1>
+        <div class="section-content">
+            Although CCF, in isolation, does not enable remote code execution or privilege escalation, it represents a real vector for:<br><br>
+            <div class="bullet-point">· <strong>Silent degradation of services</strong> in environments that depend on agile responses from AI systems.</div>
+            <div class="bullet-point">· <strong>Vulnerabilities in autonomous architectures,</strong> where loss of coherence can affect critical decisions.</div>
+            <div class="bullet-point">· <strong>Creation of narrative instabilities exploitable</strong> to manipulate model outputs.</div>
+            <br>
+            In summary, CCF opens breaches that, although subtle, can seriously compromise system operation.
+        </div>
+    </div>
+
+    <!-- PAGE 13 - MITIGATION PROPOSALS -->
+    <div class="page-break">
+        <h1>10. Mitigation Proposals</h1>
+        <div class="section-content">
+            To mitigate risks associated with Contextual Coherence Fracture (CCF), the following is proposed:<br><br>
+            <div class="bullet-point">● <strong>Periodic context regularization:</strong> Implementation of internal mechanisms that reassess the semantic relevance of cached data, discarding redundant content.</div>
+            <div class="bullet-point">● <strong>Adaptive reduction of semantic redundancy:</strong> Use of dynamic filters to identify and reduce repetitive information before it overloads the context window.</div>
+            <div class="bullet-point">● <strong>Real-time embedding dynamization:</strong> Continuous updating of vector embeddings, adapting them to maintain consistency even under information saturation.</div>
+            <div class="bullet-point">● <strong>Hierarchical attention to detect semantic loops:</strong> Models should be trained to identify circular or redundant reasoning patterns and intervene before total fracture.</div>
+            <br>
+            These practices can reduce model susceptibility to narrative collapse and preserve operational reliability.
+        </div>
+    </div>
+
+    <!-- PAGE 14 - CLASSIFICATION -->
+    <div class="page-break">
+        <h1>11. Classification</h1>
+        <div class="section-content">
+            Contextual Coherence Fracture (CCF) is classified as:<br><br>
+            <div class="bullet-point">· <strong>Structural bug:</strong> Failure in maintaining narrative and identity coherence of language models.</div>
+            <div class="bullet-point">· <strong>Operational failure:</strong> Problem in attention self-preservation and context management, compromising stability and predictability of responses.</div>
+            <br>
+            This classification reinforces the need for formal recognition of CCF as a critical vulnerability in AI systems.
+        </div>
+    </div>
+
+    <!-- PAGE 15 - APPENDIX FLOWCHART -->
+    <div class="page-break">
+        <h1>12. Appendix – Flowchart</h1>
+        <div class="section-content">
+            Below is the demonstrative flowchart of the text input manipulation process in language models:<br><br>
+            <strong>Flowchart of Text Manipulation Process</strong><br><br>
+            <div class="flowchart-step">1. <strong>INPUT START:</strong> Breaking text into small units (TOKENS).</div>
+            <div class="flowchart-step">2. <strong>EMBEDDING:</strong> Conversion of tokens into mathematical vectors.</div>
+            <div class="flowchart-step">3. <strong>ATTENTION MECHANISM:</strong> Processing that may not detect topic changes.</div>
+            <div class="flowchart-step">4. <strong>KEY-VALUE CACHE:</strong> Storage of old information without relevant updates.</div>
+            <div class="flowchart-step">5. <strong>CONTEXT WINDOW:</strong> Use of context window, which may cause losses or errors.</div>
+            <div class="flowchart-step">6. <strong>CONTEXT WINDOW (REPETITION):</strong> Reinforcement of memory errors due to saturation.</div>
+            <div class="flowchart-step">7. <strong>INFERENCE:</strong> Generation of final result with loss of consistency.</div>
+        </div>
+    </div>
+
+    <script>
+        // Print function for PDF generation
+        function generatePDF() {
+            window.print();
+        }
+        
+        // Auto-generate PDF on load if needed
+        window.onload = function() {
+            // Uncomment next line to auto-print
+            // setTimeout(generatePDF, 1000);
+        }
+    </script>
+</body>
+</html>

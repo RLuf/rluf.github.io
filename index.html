@@ -1,26 +1,466 @@
-<!DOCTYPE html>  
-<html lang="pt-br">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>FCC - Roger Luft</title>  
-    <style>  
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }  
-        h1 { color: #2c3e50; }  
-        a { color: #3498db; }  
-    </style>  
-</head>  
-<body>  
-    <header>  
-        <h1>Fractura de Coerência Contextual (FCC)</h1>  
-    </header>  
-    <main>  
-        <p>Uma vulnerabilidade operacional em modelos de linguagem.</p>  
-        <p><a href="FracturadeCoerenciaContextual.pdf">Baixar PDF</a></p>  
-    </main>  
-    <footer>  
-        <p>&copy; 2025 Roger Luft. Todos os direitos reservados.</p>  
-        <p>Este trabalho está licenciado sob a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Licença Creative Commons Atribuição 4.0 Internacional</a>.</p>  
-    </footer>  
-</body>  
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roger Luft - Pesquisas e Desenvolvimentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .language-selector select {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 15px;
+            background: #f8f9fa;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .flag-icon {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .main-title {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .project-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .project-description {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .link-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .link-button:hover {
+            background: linear-gradient(45deg, #2980b9, #1f5f8b);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .language-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .language-title {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .language-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .lang-button {
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-button:hover {
+            background: linear-gradient(45deg, #c0392b, #a93226);
+            transform: scale(1.05);
+        }
+        
+        .footer-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-text {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .license-link {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .license-link:hover {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .linkedin-link:hover {
+            background: rgba(0, 119, 181, 0.3);
+        }
+        
+        .github-link:hover {
+            background: rgba(36, 41, 46, 0.3);
+        }
+        
+        .email-link:hover {
+            background: rgba(234, 67, 53, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .project-card {
+                padding: 20px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .language-links {
+                flex-direction: column;
+            }
+            
+            .language-selector {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 0 auto 20px auto;
+                justify-content: center;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .social-link {
+                justify-content: center;
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <div class="language-selector">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDA5YjNhIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSI4IiB5PSI4IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSI4IiB5PSI4IiBmaWxsPSIjZmVkNzAwIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iMyIgZmlsbD0iIzAwOWIzYSIvPgo8L3N2Zz4K" alt="🇧🇷" class="flag-icon" id="flag-icon">
+                <select id="language-select" onchange="changeLanguage()">
+                    <option value="pt-br">🇧🇷 Português</option>
+                    <option value="en">🇺🇸 English</option>
+                </select>
+            </div>
+            
+            <h1 class="main-title" data-pt="Buscando o Equilíbrio Através da Luz" data-en="Seeking Balance Through Light">Buscando o Equilíbrio Através da Luz</h1>
+            <img src="BRASAO_DO_ANDARILHO3.jpg" alt="Brasão do Andarilho" class="logo-image">
+        </div>
+        
+        <div class="content-grid">
+            <div class="project-card">
+                <h2 class="project-title" data-pt="AI2.0 - ECOA - Evolução Cognitiva" data-en="AI2.0 - ECOA - Cognitive Evolution">AI2.0 - ECOA - Evolução Cognitiva</h2>
+                <p class="project-description" data-pt="Framework inovador de Arrays Unidedumultiversais para Sistemas de Inteligência Artificial avançada." data-en="Innovative framework of Unidedumultiversal Arrays for advanced Artificial Intelligence systems.">Framework inovador de Arrays Unidedumultiversais para Sistemas de Inteligência Artificial avançada.</p>
+                <div class="project-links">
+                    <a href="ECOA-EVOLUÇÃO COGNITIVA Arrays Unidedumultiversais Auto-Informativos.pdf" class="link-button" data-pt="Baixar PDF" data-en="Download PDF">Baixar PDF</a>
+                    <a href="ECOA-EVOLUÇÃO COGNITIVA Arrays Unidedumultiversais Auto-Informativos.md" class="link-button" data-pt="Ver Documentação Completa" data-en="View Complete Documentation">Ver Documentação Completa</a>
+                </div>
+                <div class="language-section">
+                    <div class="language-title" data-pt="Versões em Inglês:" data-en="English Versions:">Versões em Inglês:</div>
+                    <div class="language-links">
+                        <a href="ECOA-COGNITIVE EVOLUTION Unidedumultiversal Arrays Auto-Informative.txt" class="lang-button">TXT</a>
+                        <a href="ECOA-COGNITIVE EVOLUTION Unidedumultiversal Arrays Auto-Informative.md" class="lang-button">MD</a>
+                        <a href="ECOA-COGNITIVE EVOLUTION Unidedumultiversal Arrays Auto-Informative.pdf" class="lang-button">PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h2 class="project-title" data-pt="Fractura de Coerência Contextual (FCC)" data-en="Contextual Coherence Fracture (CCF)">Fractura de Coerência Contextual (FCC)</h2>
+                <p class="project-description" data-pt="Pesquisa sobre vulnerabilidade operacional em modelos de linguagem e sistemas de IA." data-en="Research on operational vulnerability in language models and AI systems.">Pesquisa sobre vulnerabilidade operacional em modelos de linguagem e sistemas de IA.</p>
+                <div class="project-links">
+                    <a href="FracturadeCoerenciaContextual.pdf" class="link-button" data-pt="Baixar PDF" data-en="Download PDF">Baixar PDF</a>
+                    <a href="FracturadeCoerenciaContextual.md" class="link-button" data-pt="Ver Documentação Completa" data-en="View Complete Documentation">Ver Documentação Completa</a>
+                </div>
+                <div class="language-section">
+                    <div class="language-title" data-pt="Versões em Inglês:" data-en="English Versions:">Versões em Inglês:</div>
+                    <div class="language-links">
+                        <a href="Contextual Coherence Fracture.txt" class="lang-button">TXT</a>
+                        <a href="Contextual Coherence Fracture.md" class="lang-button">MD</a>
+                        <a href="Contextual Coherence Fracture.pdf" class="lang-button">PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <p class="footer-text" data-pt="&copy; 2025 Roger Luft. Todos os direitos reservados." data-en="&copy; 2025 Roger Luft. All rights reserved.">&copy; 2025 Roger Luft. Todos os direitos reservados.</p>
+            <p class="footer-text">
+                <span data-pt="Este trabalho está licenciado sob a" data-en="This work is licensed under the">Este trabalho está licenciado sob a</span> 
+                <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" class="license-link" data-pt="Licença Creative Commons Atribuição 4.0 Internacional" data-en="Creative Commons Attribution 4.0 International License">Licença Creative Commons Atribuição 4.0 Internacional</a>.
+            </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/roger-luft-122679327" target="_blank" rel="noopener" class="social-link linkedin-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/rluf" target="_blank" rel="noopener" class="social-link github-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="mailto:roger@webstorage.com.br" class="social-link email-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    roger@webstorage.com.br
+                </a>
+                <a href="mailto:rlufti@gmail.com" class="social-link email-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    rlufti@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados de tradução
+        const translations = {
+            'pt-br': {
+                flag: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDA5YjNhIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSI4IiB5PSI4IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSI4IiB5PSI4IiBmaWxsPSIjZmVkNzAwIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iMyIgZmlsbD0iIzAwOWIzYSIvPgo8L3N2Zz4K',
+                title: 'Buscando o Equilíbrio Através da Luz',
+                documentLinks: {
+                    'ecoa-md': 'ECOA-EVOLUÇÃO COGNITIVA Arrays Unidedumultiversais Auto-Informativos.md',
+                    'ecoa-pdf': 'ECOA-EVOLUÇÃO COGNITIVA Arrays Unidedumultiversais Auto-Informativos.pdf',
+                    'fcc-md': 'FracturadeCoerenciaContextual.md',
+                    'fcc-pdf': 'FracturadeCoerenciaContextual.pdf'
+                }
+            },
+            'en': {
+                flag: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjYmQzNDRhIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIyIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI0IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI2IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI4IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIxMCIgZmlsbD0iI2ZmZmZmZiIvPgo8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMSIgeT0iMTIiIGZpbGw9IiNmZmZmZmYiLz4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjEiIHk9IjE0IiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHdpZHRoPSI5IiBoZWlnaHQ9IjgiIGZpbGw9IiNiZDM0NGEiLz4KPHBhdGggZD0iTTAgMGw5IDhoMTV2LTh6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik0wIDBsOSA4aDE1di04eiIgZmlsbD0iI2JkMzQ0YSIvPgo8cGF0aCBkPSJNMS41IDFjMCAuMjggLjIyLjUuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNMyAxYzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik00LjUgMWMwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNMiAyYzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik0zLjUgMmMwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNMS41IDNjMCAuMjggLjIyLjUgLjUuNXMuNS0uMjIuNS0uNS0uMjItLjUtLjUtLjUtLjUuMjItLjUuNXoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTMgM2MwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNNC41IDNjMCAuMjggLjIyLjUgLjUuNXMuNS0uMjIuNS0uNS0uMjItLjUtLjUtLjUtLjUuMjItLjUuNXoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTIgNGMwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNMy41IDRjMCAuMjggLjIyLjUgLjUuNXMuNS0uMjIuNS0uNS0uMjItLjUtLjUtLjUtLjUuMjItLjUuNXoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTEuNSA1YzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik0zIDVjMCAuMjggLjIyLjUgLjUuNXMuNS0uMjIuNS0uNS0uMjItLjUtLjUtLjUtLjUuMjItLjUuNXoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTQuNSA1YzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik0yIDZjMCAuMjggLjIyLjUgLjUuNXMuNS0uMjIuNS0uNS0uMjItLjUtLjUtLjUtLjUuMjItLjUuNXoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTMuNSA2YzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik0xLjUgN2MwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCBkPSJNMyA3YzAgLjI4IC4yMi41IC41LjVzLjUtLjIyLjUtLjUtLjIyLS41LS41LS41LS41LjIyLS41LjV6IiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIGQ9Ik00LjUgN2MwIC4yOCAuMjIuNSAuNS41cy41LS4yMi41LS41LS4yMi0uNS0uNS0uNS0uNS4yMi0uNS41eiIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4K',
+                title: 'Seeking Balance Through Light',
+                documentLinks: {
+                    'ecoa-md': 'ECOA-COGNITIVE EVOLUTION Unidedumultiversal Arrays Auto-Informative.md',
+                    'ecoa-pdf': 'ECOA-COGNITIVE EVOLUTION Unidedumultiversal Arrays Auto-Informative.pdf',
+                    'fcc-md': 'Contextual Coherence Fracture.md',
+                    'fcc-pdf': 'Contextual Coherence Fracture.pdf'
+                }
+            }
+        };
+
+        // Função para alterar idioma
+        function changeLanguage() {
+            const select = document.getElementById('language-select');
+            const selectedLang = select.value;
+            const flagIcon = document.getElementById('flag-icon');
+            
+            // Atualizar bandeira
+            flagIcon.src = translations[selectedLang].flag;
+            
+            // Atualizar título da página
+            document.title = selectedLang === 'pt-br' ? 
+                'Roger Luft - Pesquisas e Desenvolvimentos' : 
+                'Roger Luft - Research and Development';
+            
+            // Atualizar elementos com atributos data-pt e data-en
+            const elements = document.querySelectorAll('[data-pt][data-en]');
+            elements.forEach(element => {
+                if (selectedLang === 'pt-br') {
+                    element.textContent = element.getAttribute('data-pt');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+            
+            // Atualizar links dos documentos
+            updateDocumentLinks(selectedLang);
+            
+            // Salvar preferência no localStorage
+            localStorage.setItem('preferred-language', selectedLang);
+        }
+
+        // Função para atualizar links dos documentos
+        function updateDocumentLinks(language) {
+            const linkElements = document.querySelectorAll('.link-button');
+            
+            linkElements.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('ECOA')) {
+                    if (href.includes('pdf')) {
+                        link.href = translations[language].documentLinks['ecoa-pdf'];
+                    } else if (href.includes('md')) {
+                        link.href = translations[language].documentLinks['ecoa-md'];
+                    }
+                } else if (href && href.includes('Fractura') || href.includes('Contextual')) {
+                    if (href.includes('pdf')) {
+                        link.href = translations[language].documentLinks['fcc-pdf'];
+                    } else if (href.includes('md')) {
+                        link.href = translations[language].documentLinks['fcc-md'];
+                    }
+                }
+            });
+        }
+
+        // Função para carregar idioma salvo
+        function loadSavedLanguage() {
+            const savedLang = localStorage.getItem('preferred-language');
+            if (savedLang) {
+                const select = document.getElementById('language-select');
+                select.value = savedLang;
+                changeLanguage();
+            }
+        }
+
+        // Carregar idioma salvo quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadSavedLanguage);
+    </script>
+</body>
 </html>
