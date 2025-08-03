@@ -14,7 +14,7 @@ config.json
 .rascunho*
 # Builds/PDFs desnecessários  
 /build/  
-/*.pdf   # (Remova esta linha se quiser versionar o PDF do paper)
+# /*.pdf   # (Comentado para permitir versionamento dos PDFs dos projetos)
 .aider*
 *id*
 .vscode/
